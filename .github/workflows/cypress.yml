@@ -15,3 +15,9 @@ jobs:
           # Se o seu comando de teste for diferente de 'npm test', 
           # você pode especificar aqui
           browser: chrome
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        env:
+          CYPRESS_user_name: ${{ secrets.CYPRESS_USER_NAME }}
+          CYPRESS_user_password: ${{ secrets.CYPRESS_USER_PASSWORD }}
+          
