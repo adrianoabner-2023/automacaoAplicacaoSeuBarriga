@@ -2,7 +2,10 @@ describe('Teste do site Seu Barriga com Comandos Customizados', () => {
 
   beforeEach(() => {
     // Usando o comando de login
-    cy.login('adriano.barbosa@gmail.com', '321');
+    cy.login('user_name', 'user_password');
+
+
+
   });
 
   it('Adicionando conta', () => {

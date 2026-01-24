@@ -1,8 +1,8 @@
 // Comando para Login
 Cypress.Commands.add('login', (email, senha) => {
     cy.visit('https://seubarriga.wcaquino.me/');
-    cy.get('#email').type(email);
-    cy.get('#senha').type(senha);
+    cy.get('#email').type(Cypress.env('user_name'));
+    cy.get('#senha').type(Cypress.env('user_password'));
     cy.contains('button', 'Entrar').click();
     cy.get('.alert-success').should('be.visible');
 });
