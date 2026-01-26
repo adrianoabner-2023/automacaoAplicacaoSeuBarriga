@@ -3,9 +3,6 @@ describe('Teste do site Seu Barriga com Comandos Customizados', () => {
   beforeEach(() => {
     // Usando o comando de login
     cy.login('user_name', 'user_password');
-
-
-
   });
 
   it('Adicionando conta', () => {
@@ -16,6 +13,21 @@ describe('Teste do site Seu Barriga com Comandos Customizados', () => {
   it('Removendo a conta criada', () => {
     cy.removerUltimaConta();
     cy.get('.alert').should('contain', 'sucesso');
+  });
+
+  it('Deve digitar e apagar todos os campos antes de enviar', () => {
+    const dadosTeste = {
+      dataTransacao: '26/01/2026',
+      dataPagamento: '27/01/2026',
+      descricao: 'Teste de estresse',
+      interessado: 'Adriano',
+      valor: '1500',
+      tipo: 'Despesa'
+    };
+
+    cy.testarLimpezaDeCampos(dadosTeste);
+
+    cy.get('.alert-danger li').should('have.length', 6);
   });
 
   it('Criando movimentação', () => {

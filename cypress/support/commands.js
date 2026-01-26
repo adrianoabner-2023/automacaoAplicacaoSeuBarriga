@@ -22,7 +22,19 @@ Cypress.Commands.add('removerUltimaConta', () => {
     cy.get('#tabelaContas tbody tr').last().find('a[href*="remover"]').click();
 });
 
+//Preenchendo campos de criar movimentanção e apagando os mesmos
+Cypress.Commands.add('testarLimpezaDeCampos', (dados) => {
+    cy.contains('a', 'Criar Movimentação').click();
+    cy.get('[name="tipo"]').select(dados.tipo);
+    cy.get('[name="data_transacao"]').type(dados.dataTransacao).clear();
+    cy.get('[name="data_pagamento"]').type(dados.dataPagamento).clear();
+    cy.get('[name="descricao"]').type(dados.descricao).clear();
+    cy.get('[name="interessado"]').type(dados.interessado).clear();
+    cy.get('[name="valor"]').type(dados.valor).clear();
+    cy.get('.btn').click();
+});
 // Comando para Criar Movimentação
+
 Cypress.Commands.add('criarMovimentacao', (dados) => {
     cy.contains('a', 'Criar Movimentação').click();
     cy.get('[name="tipo"]').select(dados.tipo);
