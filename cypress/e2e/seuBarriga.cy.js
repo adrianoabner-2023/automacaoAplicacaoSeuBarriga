@@ -5,12 +5,12 @@ describe('Teste do site Seu Barriga com Comandos Customizados', () => {
     cy.login('user_name', 'user_password');
   });
 
-  it('Adicionando conta', () => {
-    cy.adicionarConta('Segunda conta Test');
+  it('Deve adicionar e logo em seguida remover a conta', () => {
+    // 1. Adiciona uma conta nova (garante que ela existe e está vazia)
+    cy.adicionarConta();
     cy.get('.alert').should('contain', 'sucesso');
-  });
 
-  it('Removendo a conta criada', () => {
+    // 2. Remove a conta que acabamos de criar (ela será a última da lista)
     cy.removerUltimaConta();
     cy.get('.alert').should('contain', 'sucesso');
   });
@@ -36,8 +36,7 @@ describe('Teste do site Seu Barriga com Comandos Customizados', () => {
       dataTransacao: '14/01/2026',
       dataPagamento: '20/01/2026',
       descricao: 'Passeio no salão de carros',
-      interessado: 'Adriano Abner',
-      valor: '67.00'
+      interessado: 'Adriano Abner'
     };
 
     cy.criarMovimentacao(movimentacao);
